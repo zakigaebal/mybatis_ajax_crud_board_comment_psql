@@ -13,7 +13,8 @@ import java.util.List;
 
 @Service
 public class BoardService {
-	@Autowired private BoardMapper m;
+	@Autowired
+	private BoardMapper m;
 	public boolean addBoard(Board b) {
 		return m.addBoard(b);
 	}
@@ -31,12 +32,11 @@ public class BoardService {
 		return m.getReply(boardIdx);
 	}
 
-
 	public void deleteMember(int idx) {
-		if(m.getBoardOne(idx)!=null){
+		if(m.selectById(idx)!=null){
 			m.delete(idx);
 		} else {
-			throw new IllegalStateException("회원이 존재하지 않습니다.");
+			throw new IllegalStateException("존재하지 않습니다.");
 		}
 	}
 }

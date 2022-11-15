@@ -36,10 +36,17 @@ CREATE TABLE `tb_board` (
 				)
     </insert>
 
+	<select id="selectById" parameterType="int" resultType="com.example.demo.domain.Board">
+		SELECT *
+		FROM tb_board
+		WHERE idx = #{idx}
+	</select>
+
+
 <!-- 게시판 글 삭제	-->
 	<delete id="delete" parameterType="int">
 		DELETE from tb_board
-		WHERE id = #{id}
+		WHERE idx = #{idx}
 	</delete>
 
 	<select id="getBoard" resultType="com.example.demo.domain.Board">

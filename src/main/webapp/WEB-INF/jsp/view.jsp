@@ -438,13 +438,36 @@ function drawReply(replys) {
 
 
 
+<script>
+	const urlParams = new URL(location.href).searchParams;
 
+	const urlid = urlParams.get('idx');
+
+	console.log(urlid)
+</script>
 
 
 
 
 					<!-- /.container-fluid -->
+<%--			onclick = location.href='board/del/23'--%>
+<%--			<button type='button' class='btn btn-danger' style='float: right;' id = 'deleteBtn' href="/board/del/"+<%=urlid%>글삭제</button>--%>
 
+			<script>
+
+				$("#deleteBtn").click(function () {
+					console.log('aaa')
+
+					$.ajax({
+						url: "/board/del",
+						method: "DELETE",
+						dataType: "text",
+						success: function (data) {
+							console.log(data)
+						}
+					})
+				})
+			</script>
 
 					<div class="container" style="margin-top:30px">
 						<div class="row">
@@ -475,7 +498,7 @@ function drawReply(replys) {
 						</div>
 					</div>
 
-
+			<button type='button' class='btn btn-primary' align='right' id = 'deleteBtn' onclick="location.href='board/del'">글삭제</button></td> </tr>
 
 
 

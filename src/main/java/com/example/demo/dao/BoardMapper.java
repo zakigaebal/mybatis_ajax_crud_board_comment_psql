@@ -18,5 +18,9 @@ public interface BoardMapper {
 	public List<Reply> getReply(int boardIdx);
 
 	void delete(int id);
-	
+
+	Board selectById(int id);
+
+
+
 }

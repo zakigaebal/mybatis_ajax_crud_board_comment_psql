@@ -27,9 +27,8 @@ $(document).ready(function() {
        $("#listArea").append(html)
        $('#example').DataTable();
      }});
-     $("#deleteBtn").click(function(){
+     $("#deleteBtn").click(function(){type: 'get',
     	location.href ="/";
-
      })
 } );
 /*

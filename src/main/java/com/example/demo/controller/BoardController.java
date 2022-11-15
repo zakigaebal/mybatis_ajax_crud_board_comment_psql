@@ -77,11 +77,11 @@ public class BoardController {
 
 
     //    게시글 삭제
-    @DeleteMapping("/board/del/{idx}")
-    public String deleteMember(@PathVariable int idx){
-        s.deleteMember(idx);
-        return "tables";
-    }
+
+//    public String deleteMembe2r(@PathVariable int idx){
+//        s.deleteMember(idx);
+//        return "tables";
+//    }
 
 
     @GetMapping("/replyList")
@@ -98,6 +98,14 @@ public class BoardController {
         s.addReply(new Reply(0, idx,replyIdx, contents));
         return "redirect:view?idx=" + idx;
     }
+
+    @DeleteMapping("/board/del/{idx}")
+    public String deleteMember(@PathVariable int idx){
+            s.deleteMember(idx);
+            return "redirect:tables";
+    }
+
+    
 
 
 
