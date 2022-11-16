@@ -4,6 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
 <layoutTag:layout>
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+    .subReply {
+      padding-left: 50px;
+    }
+  </style>
 
   <div class="container">
     <div class="col-xs-12" style="margin:15px auto;">
@@ -13,6 +22,7 @@
     <div class="col-xs-12">
       <form action="/insertProc" method="post">
         <dl class="dl-horizontal">
+
           <dt>제목</dt>
           <dd>${detail.subject}</dd>
 
@@ -43,24 +53,25 @@
 
     <!--                     추가                         -->
     <!--  댓글  -->
-    <div class="container">
-      <label for="content">comment</label>
-      <form name="commentInsertForm">
-        <div class="input-group">
-          <input type="hidden" name="bno" value="${detail.bno}"/>
-          <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-          <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-               </span>
-        </div>
-      </form>
-    </div>
-
+<%--    <div class="container">--%>
+<%--      <label for="content">comment</label>--%>
+<%--      <form name="commentInsertForm">--%>
+<%--        <div class="input-group">--%>
+<%--          <input type="hidden" name="bno" value="${detail.bno}"/>--%>
+<%--          <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">--%>
+<%--          <span class="input-group-btn">--%>
+<%--                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>--%>
+<%--               </span>--%>
+<%--        </div>--%>
+<%--      </form>--%>
+<%--    </div>--%>
+    <h2 id = "cnt"></h2>
     <div class="container">
       <div class="commentList"></div>
     </div>
   </div>
 
   <!--                     추가                         -->
-  <%@ include file="commentS.jsp" %>
+<%--  <%@ include file="commentS.jsp" %>--%>
+  <%@ include file="commentview.jsp" %>
 </layoutTag:layout>

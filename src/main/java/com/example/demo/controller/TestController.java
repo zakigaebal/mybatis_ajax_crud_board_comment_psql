@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.TestMapper;
 import com.example.demo.domain.BoardVO;
+import com.example.demo.domain.CommentVO;
 import com.example.demo.domain.FileVO;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.TestService;
@@ -11,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,9 +43,13 @@ public class TestController {
         return "detail";
     }
 
+
+
+
+
     @RequestMapping("/test")
     private String homeForm(){
-        return "home";
+        return "commentview";
     }
 
 

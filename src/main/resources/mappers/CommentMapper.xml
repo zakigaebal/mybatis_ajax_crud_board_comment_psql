@@ -19,16 +19,17 @@
 
     <!-- comment List -->
     <select id="commentList" parameterType="int" resultType="com.example.demo.domain.CommentVO">
-        SELECT *
+        SELECT cno, bno, reply_idx as replyIdx, content, writer
         FROM COMMENT
-        where BNO =#{bno}
+        where bno =#{bno}
+        order by reg_date asc, reply_idx asc
     </select>
 
 
     <insert id="commentInsert" parameterType="com.example.demo.domain.CommentVO">
         INSERT INTO
-            COMMENT (BNO, CONTENT, WRITER, REG_DATE)
-        VALUES(#{bno},#{content},#{writer},now())
+            COMMENT (bno, reply_idx, content, writer, reg_date)
+        VALUES(#{bno},#{replyIdx},#{content},#{writer},now())
     </insert>
 
     <update id="commentUpdate" parameterType="com.example.demo.domain.CommentVO">

@@ -20,6 +20,7 @@
             success : function(data){
                 var a ='';
                 $.each(data, function(key, value){
+
                     a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                     a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
                     a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
@@ -27,7 +28,6 @@
                     a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
                     a += '</div></div>';
                 });
-
                 $(".commentList").html(a);
             }
         });
@@ -82,6 +82,7 @@
             type : 'post',
             success : function(data){
                 if(data == 1) commentList(bno); //댓글 삭제후 목록 출력
+
             }
         });
     }
