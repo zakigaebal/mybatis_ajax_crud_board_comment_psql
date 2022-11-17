@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.CommentVO;
 import com.example.demo.domain.Reply;
 import com.example.demo.service.CommentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = {"댓글정보를 제공하는 Controller"})
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
@@ -31,16 +33,22 @@ public class CommentController {
         return mCommentService.commentListService(bno);
     }
 
+    @RequestMapping("/deleteList") // comment list
+    @ResponseBody
+    private List<CommentVO> mcommentDeleteServiceList(int cno) throws Exception {
+        return mCommentService.commentDeleteListService(cno);
+    }
+
     @RequestMapping("/insert") //댓글 작성
     @ResponseBody
-    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content) throws Exception{
+    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer) throws Exception{
 
         CommentVO comment = new CommentVO();
         comment.setBno(bno);
 
         comment.setContent(content);
         //로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다. 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
-        comment.setWriter("test");
+        comment.setWriter(writer);
 
         return mCommentService.commentInsertService(comment);
     }

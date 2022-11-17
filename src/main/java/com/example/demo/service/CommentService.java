@@ -20,6 +20,10 @@ public class CommentService {
         return mCommentMapper.commentList(bno);
     }
 
+    public List<CommentVO> commentDeleteListService(int cno) throws Exception{
+        return mCommentMapper.commentDeleteList(cno);
+    }
+
     public int commentInsertService(CommentVO comment) throws Exception{
 
         return mCommentMapper.commentInsert(comment);

@@ -25,6 +25,30 @@
         order by reg_date asc, reply_idx asc
     </select>
 
+<!-- 자식댓글    부모댓글 존재시 삭제하기위해 조회-->
+    <select id="commentDeleteList" parameterType="int" resultType="com.example.demo.domain.CommentVO">
+        with RECURSIVE comments AS
+                           (
+                               select
+                                   *,
+                                   "cno" as top_key,
+
+                                   '' || cno as "keys"
+                               from comment
+                               where reply_idx = 0
+                               UNION
+
+                               select
+                                   b.*,
+                                   a.top_key,
+
+                                   a.keys || ',' || b.cno as keys
+                               from comments a
+                                        inner join comment b on a.cno = b.reply_idx
+                           )select * from comments where keys like '%${cno}%' order by keys
+    </select>
+
+
 
     <insert id="commentInsert" parameterType="com.example.demo.domain.CommentVO">
         INSERT INTO

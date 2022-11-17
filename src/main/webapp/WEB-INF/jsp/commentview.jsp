@@ -49,7 +49,8 @@
            html += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
            html += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
            html += '<a onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');"> 수정 </a>';
-           html += '<a onclick="commentDelete('+reply.cno+');"> 삭제 </a>';
+             html += '<a class="del" onclick="commentDeleteList(' + reply.cno + ');"> 삭제 </a>';
+
            html += '</div>';
 			 html += '<form class="form-inline" action="/comment/cinsert" method="post">' +
 
@@ -73,15 +74,15 @@
 		 if (reply.replyIdx != 0) {
 			 var rc = 0;
 			 replys.forEach(function(i){
-				 if (reply.cno == i.replyIdx) rc++;
-                 console.log('bbb')
+				 if (reply.cno == i.replyIdx) rc++
 			 })
 			 var subHtml = '';
 			 subHtml = '</hr><div class="row"><div class="col-sm-12 subReply">';
 
            subHtml += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
            subHtml += '<a onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');"> 수정 </a>';
-           subHtml += '<a onclick="commentDelete('+reply.cno+');"> 삭제 </a>';
+           subHtml += '<a onclick="commentDeleteList('+reply.cno+');"> 삭제 </a>';
+           // subHtml += '<a onclick="commentDeleteList('+reply.cno+');"> 삭제조회 </a>';
            subHtml += '</div>';
 
 
@@ -124,6 +125,40 @@
         console.log(data)
         if(data == 1) commentReload(); //댓글 수정후 목록 출력
         console.log('리로드')
+      }
+    });
+  }
+
+
+  function commentDeleteList(cno){
+    $.ajax({
+      url : '/comment/deleteList',
+      type : 'get',
+      data : {'cno':cno},
+      success : function(replys){
+        if(replys==""){
+          console.log('비었습니다.')
+        }
+        else{
+          replys.forEach(function(reply){
+            console.log(reply.cno)
+            let delcode = reply.cno
+          //  댓글 삭제 연습코드
+
+            $.ajax({
+              url : '/comment/delete/'+reply.cno,
+              type : 'post',
+              success : function(data){
+                console.log('삭제성공')
+
+              }
+            });
+            // 댓글 삭제 연습코드 끝
+            commentReload(); //댓글 삭제후 목록 출력
+            console.log('리로드')
+          })
+        }
+
       }
     });
   }
@@ -179,7 +214,7 @@
             html += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
             html += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
             html += '<a onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');"> 수정 </a>';
-            html += '<a onclick="commentDelete('+reply.cno+');"> 삭제 </a>';
+            html += '<a onclick="commentDeleteList('+reply.cno+');"> 삭제 </a>';
             html += '</div>';
             html += '<form class="form-inline" action="/comment/cinsert" method="post">' +
 
@@ -192,15 +227,38 @@
             html += '<div class="row"><div class="col-sm-12 sub' + reply.cno + '"></div>' +
                     '</div></div></div></div></div>'+
                     '<br/>';
-
           }
         })
         $(".commentList").html(html);
+        replys.forEach(function(reply){
+          if (reply.replyIdx != 0) {
+            var rc = 0;
+            replys.forEach(function(i){
+              if (reply.cno == i.replyIdx) rc++;
+              console.log('bbb')
+            })
+            var subHtml = '';
+            subHtml = '</hr><div class="row"><div class="col-sm-12 subReply">';
+
+            subHtml += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
+            subHtml += '<a onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');"> 수정 </a>';
+            subHtml += '<a onclick="commentDeleteList('+reply.cno+');"> 삭제 </a>';
+            subHtml += '</div>';
+
+
+            subHtml += '<form class="form-inline" action="/comment/cinsert" method="post">' +
+                    '<label for="pwd" class="mr-sm-2">'+'<div class="commentContent'+reply.cno+'"> <p> 내용 : '+reply.content + '(' + rc + ')'+'</p>'  + '</label>'
+            subHtml += '<input type="hidden" name="bno" value = "' + bno + '">' +
+                    '<input type="hidden" name="replyIdx" value = "' + reply.cno + '">' +
+                    '<input type="text" class="form-control mb-2 mr-sm-2" id="content" placeholder="답글" name="content">' +
+                    '<button type="submit" class="btn btn-primary mb-2">등록</button></form>';
+            subHtml += '<div class="row"><div class="col-sm-12 sub' + reply.cno + '"></div></div></div></div>';
+            $(".sub" + reply.replyIdx).append(subHtml);
+          }
+        })
       }
     });
   }
-
-
 
   function commentList(){
     $.ajax({

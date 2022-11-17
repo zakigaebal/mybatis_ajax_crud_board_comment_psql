@@ -6,6 +6,7 @@ import com.example.demo.domain.CommentVO;
 import com.example.demo.domain.FileVO;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.TestService;
+import io.swagger.annotations.Api;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
+@Api(tags = {"게시판정보를 제공하는 Controller"})
 @Controller
 public class TestController {
     @Autowired
