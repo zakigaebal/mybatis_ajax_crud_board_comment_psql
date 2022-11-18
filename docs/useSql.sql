@@ -50,3 +50,24 @@ DROP TABLE IF EXISTS comment;
          from comments a
          inner join comment b on a.cno = b.reply_idx
          )select * from comments where keys like '%${cno}%' order by keys
+
+-- 테이블 삭제데이터조회 연습 쿼리
+         with RECURSIVE comments AS
+(
+	select
+		*,
+		"cno" as top_key,
+
+		'' || cno as "keys"
+	from comment
+	where reply_idx = 0
+	UNION
+
+	select
+		b.*,
+		a.top_key,
+
+		a.keys || ',' || b.cno as keys
+	from comments a
+	inner join comment b on a.cno = b.reply_idx
+)select * from comments where keys like '%1%' order by keys

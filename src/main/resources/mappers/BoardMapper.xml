@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper 
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- 
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
 http://localhost:8080/web/board
 
 CREATE TABLE `tb_reply` (
@@ -20,73 +20,59 @@ CREATE TABLE `tb_board` (
   PRIMARY KEY (`idx`));
  -->
 <mapper namespace="com.example.demo.dao.BoardMapper">
-    <insert id="addBoard">
-		INSERT INTO 
-	    	tb_board
-	   			(
-					title,
-					image,
-					contents
-				)
-	    	VALUES
-	   			(
-	   				#{title},
-	   				#{image},
-	   				#{contents}
-				)
+    <select id="boardCount" resultType="int">
+        select count(*) from board
+    </select>
+
+    <select id="boardList" resultType="com.example.demo.domain.BoardVO">
+        SELECT bno, subject, content, writer, reg_date as regDate FROM BOARD
+    </select>
+
+    <select id="boardDetail" parameterType="int" resultType="com.example.demo.domain.BoardVO">
+        SELECT
+            *
+        FROM BOARD
+        WHERE
+            BNO = #{bno}
+    </select>
+
+    <insert id="boardInsert" parameterType="com.example.demo.domain.BoardVO" useGeneratedKeys="true" keyProperty="bno">
+        INSERT INTO
+            BOARD (SUBJECT,CONTENT,WRITER,REG_DATE)
+        VALUES(#{subject},#{content},#{writer},now())
     </insert>
 
-	<select id="selectById" parameterType="int" resultType="com.example.demo.domain.Board">
-		SELECT *
-		FROM tb_board
-		WHERE idx = #{idx}
-	</select>
-
-
-<!-- 게시판 글 삭제	-->
-	<delete id="delete" parameterType="int">
-		DELETE from tb_board
-		WHERE idx = #{idx}
-	</delete>
-
-	<select id="getBoard" resultType="com.example.demo.domain.Board">
-		SELECT
-			idx, title, image, contents
-		FROM
-			tb_board
-		ORDER BY idx asc
-	</select>
-	<select id="getBoardOne" resultType="com.example.demo.domain.Board">
-		SELECT
-			idx, title, image, contents
-		FROM
-			tb_board
-		WHERE
-			idx = #{idx}
-	</select>
-    <insert id="addReply">
-		INSERT INTO 
-	    	tb_reply
-	   			(
-					board_idx,
-					reply_idx,
-					contents
-				)
-	    	VALUES
-	   			(
-	   				#{boardIdx},
-	   				#{replyIdx},
-	   				#{contents}
-				)
+    <insert id="fileInsert" parameterType="com.example.demo.domain.FileVO">
+        INSERT INTO
+            FILES (BNO, FILENAME, FILEORINAME, FILEURL)
+        VALUES (#{bno},#{fileName},#{fileOriName},#{fileUrl})
     </insert>
-	<select id="getReply" resultType="com.example.demo.domain.Reply">
-		SELECT
-			idx, board_idx as boardIdx, reply_idx as replyIdx, contents
-		FROM
-			tb_reply
-		WHERE
-			board_idx = #{boardIdx}
-		order by reply_idx asc
-	</select>
+
+    <select id="fileDetail" parameterType="int" resultType="com.example.demo.domain.FileVO">
+        SELECT
+            *
+        FROM Files
+        WHERE
+            BNO = #{bno}
+    </select>
+
+
+    <update id="boardUpdate" parameterType="com.example.demo.domain.BoardVO">
+        UPDATE BOARD
+        SET
+        <if test="subject != null">
+            SUBJECT = #{subject}
+        </if>
+        <if test="subject != null and content != null"> , </if>
+        <if test="content != null">
+            CONTENT = #{content}
+        </if>
+        WHERE BNO = #{bno}
+    </update>
+
+    <delete id="boardDelete" parameterType="int">
+        DELETE FROM BOARD WHERE BNO = #{bno}
+    </delete>
+
 
 </mapper>

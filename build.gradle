@@ -17,6 +17,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
+	//스프링 데브 툴스를 사용하면 서버 재시작 안해도된다
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
 	// Swagger
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 

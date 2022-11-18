@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.CommentVO;
-import com.example.demo.domain.Reply;
-import com.example.demo.service.CommentService;
+import com.example.demo.service.CommentServiceImpl;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,17 +13,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
-
     @Autowired
-    CommentService mCommentService;
-
-
-//    @RequestMapping("/list") //댓글 리스트
-//    @ResponseBody
-//    private List<CommentVO> mCommentServiceList(Model model) throws Exception{
-//
-//        return mCommentService.commentListService();
-//    }
+    CommentServiceImpl mCommentService;
 
     @RequestMapping("/list") // comment list
     @ResponseBody
@@ -39,28 +28,15 @@ public class CommentController {
         return mCommentService.commentDeleteListService(cno);
     }
 
-    @RequestMapping("/insert") //댓글 작성
-    @ResponseBody
-    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer) throws Exception{
-
-        CommentVO comment = new CommentVO();
-        comment.setBno(bno);
-
-        comment.setContent(content);
-        //로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다. 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
-        comment.setWriter(writer);
-
-        return mCommentService.commentInsertService(comment);
-    }
 
     @PostMapping("/cinsert")
     public String writeReply(
-            @RequestParam int bno, @RequestParam("replyIdx")int replyIdx, @RequestParam("content")String content) throws Exception {
+            @RequestParam int bno, @RequestParam("replyIdx")int replyIdx,  @RequestParam("content")String content, @RequestParam String writer ) throws Exception {
             CommentVO comment= new CommentVO();
             comment.setBno(bno);
             comment.setContent(content);
             comment.setReplyIdx(replyIdx);
-            comment.setWriter("test2");
+            comment.setWriter(writer);
             mCommentService.commentInsertService(comment);
         return "redirect:/detail/" + bno;
     }

@@ -32,7 +32,9 @@
                 </div>
                 <div class="form-group">
                     <label for="file">파일 업로드</label>
-                    <input type="file" id="file" name="files">
+                    <input class="form-control" type="file" id="file" name="files">
+
+
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-sm" style="float:right;">작성</button>

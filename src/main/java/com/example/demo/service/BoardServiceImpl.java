@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.TestMapper;
+import com.example.demo.dao.BoardMapper;
 import com.example.demo.domain.BoardVO;
 import com.example.demo.domain.FileVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,40 +8,41 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class TestService {
+public class BoardServiceImpl implements BoardService{
     @Autowired
-    private TestMapper mBoardMapper;
-    public List<BoardVO> boardListService() throws Exception{
+    private BoardMapper mBoardMapper;
+    public List<BoardVO> boardListService(){
 
         return mBoardMapper.boardList();
     }
 
-    public BoardVO boardDetailService(int bno) throws Exception{
+    @Override
+    public BoardVO boardDetailService(int bno){
 
         return mBoardMapper.boardDetail(bno);
     }
-
-    public int boardInsertService(BoardVO board) throws Exception{
+    @Override
+    public int boardInsertService(BoardVO board){
 
         return mBoardMapper.boardInsert(board);
     }
-
-    public int boardUpdateService(BoardVO board) throws Exception{
+    @Override
+    public int boardUpdateService(BoardVO board){
 
         return mBoardMapper.boardUpdate(board);
     }
-
-    public int boardDeleteService(int bno) throws Exception{
+    @Override
+    public int boardDeleteService(int bno){
 
         return mBoardMapper.boardDelete(bno);
     }
-
+    @Override
     //BoardService.java
-    public int fileInsertService(FileVO file) throws Exception{
+    public int fileInsertService(FileVO file){
         return mBoardMapper.fileInsert(file);
     }
-
-    public FileVO fileDetailService(int bno) throws Exception{
+    @Override
+    public FileVO fileDetailService(int bno){
 
         return mBoardMapper.fileDetail(bno);
     }

@@ -13,18 +13,18 @@ public interface CommentMapper {
     public int commentCount() throws Exception;
 
     // 댓글 목록
-    public List<CommentVO> commentList(int bno) throws Exception;
+    public List<CommentVO> commentList(int bno);
 
-    public List<CommentVO> commentDeleteList(int cno) throws Exception;
+    public List<CommentVO> commentDeleteList(int cno);
 
     // 댓글 작성
-    public int commentInsert(CommentVO comment) throws Exception;
+    public int commentInsert(CommentVO comment);
 
     // 댓글 수정
-    public int commentUpdate(CommentVO comment) throws Exception;
+    public int commentUpdate(CommentVO comment);
 
     // 댓글 삭제
-    public int commentDelete(int cno) throws Exception;
+    public int commentDelete(int cno);
 
 }
 

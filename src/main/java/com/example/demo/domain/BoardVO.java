@@ -10,15 +10,9 @@ public class BoardVO {
     private String content;
     private String writer;
 
-    private LocalDateTime reg_date;
+    private Date regDate;
 
-    public LocalDateTime getReg_date() {
-        return reg_date;
-    }
 
-    public void setReg_date(LocalDateTime reg_date) {
-        this.reg_date = reg_date;
-    }
 
     public int getBno() {
         return bno;
@@ -53,8 +47,12 @@ public class BoardVO {
     }
 
 
+    public Date getRegDate() {
+        return regDate;
+    }
 
-
-
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
 }
 
