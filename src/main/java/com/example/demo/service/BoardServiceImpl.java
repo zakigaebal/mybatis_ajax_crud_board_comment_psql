@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class BoardServiceImpl implements BoardService{
+    //@Autowird를 사용하면 Bean이 자동으로 만들어진다.
     @Autowired
     private BoardMapper mBoardMapper;
     public List<BoardVO> boardListService(){

@@ -1,3 +1,16 @@
+-- 회원가입 테이블 생성
+create table members(
+                        member_id serial primary key,
+                        login_id varchar(50),
+                        password varchar(50),
+                        name varchar(50),
+                        role varchar(50),
+                        reg_day timestamp);
+
+-- 회원가입 테이블 조회
+select * from members;
+
+
 -- 게시판 테이블 생성
 CREATE TABLE BOARD (
                        bno serial primary key,
@@ -8,6 +21,18 @@ CREATE TABLE BOARD (
 
 -- 게시판 조회
 select * from board;
+
+-- 게시판 파일 테이블 생성
+create table files(
+                      fno serial primary key,
+                      bno int not null,
+                      filename varchar(200) not null,
+                      fileOriName varchar(300) not null,
+                      fileurl varchar(500) not null);
+
+-- 게시판 파일 테이블 조회
+select * from files;
+
 
 
 -- 댓글 테이블 생성

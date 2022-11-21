@@ -26,14 +26,14 @@ public class BoardController {
     @RequestMapping("/") //게시판 리스트 화면 호출
     private String boardHome(Model model){
         model.addAttribute("list", mBoardService.boardListService());
-        return "list"; //생성할 jsp
+        return "board/list"; //생성할 jsp
     }
 
 
     @RequestMapping("/list") //게시판 리스트 화면 호출
     private String boardList(Model model){
         model.addAttribute("list", mBoardService.boardListService());
-        return "list"; //생성할 jsp
+        return "board/list"; //생성할 jsp
     }
 
     @RequestMapping("/detail/{bno}")
@@ -42,7 +42,7 @@ public class BoardController {
         model.addAttribute("detail", mBoardService.boardDetailService(bno));
         model.addAttribute("files", mBoardService.fileDetailService(bno)); //추가
 
-        return "detail";
+        return "board/detail";
     }
 
 
@@ -59,7 +59,7 @@ public String hello(){
     @RequestMapping("/insert") //게시글 작성폼 호출
     private String boardInsertForm(){
 
-        return "insert";
+        return "board/insert";
     }
 
     @Value("${file.upload.directory}")
@@ -74,6 +74,9 @@ public String hello(){
         board.setSubject(request.getParameter("subject"));
         board.setContent(request.getParameter("content"));
         board.setWriter(request.getParameter("writer"));
+
+        board.setFixed(request.getParameter("fixed"));
+        board.setUsed(request.getParameter("used"));
 
 
         if(files.isEmpty()){
@@ -114,7 +117,7 @@ public String hello(){
 
         model.addAttribute("detail", mBoardService.boardDetailService(bno));
 
-        return "update";
+        return "board/update";
     }
 
     @RequestMapping("/updateProc")
@@ -123,6 +126,8 @@ public String hello(){
         BoardVO board = new BoardVO();
         board.setSubject(request.getParameter("subject"));
         board.setContent(request.getParameter("content"));
+        board.setFixed(request.getParameter("fixed"));
+        board.setUsed(request.getParameter("used"));
         board.setBno(Integer.parseInt(request.getParameter("bno")));
 
         mBoardService.boardUpdateService(board);

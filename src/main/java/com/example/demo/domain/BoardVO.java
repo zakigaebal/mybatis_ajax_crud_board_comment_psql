@@ -10,9 +10,26 @@ public class BoardVO {
     private String content;
     private String writer;
 
+    private String fixed;
+
+    private String used;
     private Date regDate;
 
+    public String getFixed() {
+        return fixed;
+    }
 
+    public void setFixed(String fixed) {
+        this.fixed = fixed;
+    }
+
+    public String getUsed() {
+        return used;
+    }
+
+    public void setUsed(String used) {
+        this.used = used;
+    }
 
     public int getBno() {
         return bno;

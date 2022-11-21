@@ -11,6 +11,9 @@
     <body>
 
 
+
+
+
     <div class="container">
         <div class="col-xs-12" style="margin:15px auto;">
             <label style="font-size:20px;"><span class="glyphicon glyphicon-edit"></span>게시글 작성</label>
@@ -33,8 +36,16 @@
                 <div class="form-group">
                     <label for="file">파일 업로드</label>
                     <input class="form-control" type="file" id="file" name="files">
-
-
+                </div>
+                <div>
+                    <label>고정공지사항유무</label>
+                    <input type="radio" name="fixed" value="y">yes
+                    <input type="radio" name="fixed" value="n" checked>no
+                </div>
+                <div>
+                    <label>게시글사용유무</label>
+                    <input type="radio" name="used" value="y" checked>yes
+                    <input type="radio" name="used" value="n">no
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-sm" style="float:right;">작성</button>

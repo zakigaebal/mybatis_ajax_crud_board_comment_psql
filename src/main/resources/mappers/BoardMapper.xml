@@ -25,7 +25,7 @@ CREATE TABLE `tb_board` (
     </select>
 
     <select id="boardList" resultType="com.example.demo.domain.BoardVO">
-        SELECT bno, subject, content, writer, reg_date as regDate FROM BOARD
+        SELECT bno, subject, content, writer, fixed, used, reg_date as regDate FROM BOARD
     </select>
 
     <select id="boardDetail" parameterType="int" resultType="com.example.demo.domain.BoardVO">
@@ -38,8 +38,8 @@ CREATE TABLE `tb_board` (
 
     <insert id="boardInsert" parameterType="com.example.demo.domain.BoardVO" useGeneratedKeys="true" keyProperty="bno">
         INSERT INTO
-            BOARD (SUBJECT,CONTENT,WRITER,REG_DATE)
-        VALUES(#{subject},#{content},#{writer},now())
+            BOARD (SUBJECT,CONTENT,WRITER,fixed,used,REG_DATE)
+        VALUES(#{subject},#{content},#{writer},#{fixed},#{used},now())
     </insert>
 
     <insert id="fileInsert" parameterType="com.example.demo.domain.FileVO">
@@ -60,13 +60,14 @@ CREATE TABLE `tb_board` (
     <update id="boardUpdate" parameterType="com.example.demo.domain.BoardVO">
         UPDATE BOARD
         SET
-        <if test="subject != null">
-            SUBJECT = #{subject}
-        </if>
+        <if test="subject != null"> SUBJECT = #{subject} </if>
         <if test="subject != null and content != null"> , </if>
-        <if test="content != null">
-            CONTENT = #{content}
-        </if>
+        <if test="content != null"> CONTENT = #{content} </if>
+        <if test="subject != null and content != null and fixed != null"> , </if>
+        <if test="fixed != null"> fixed = #{fixed} </if>
+        <if test="subject != null and content != null and fixed != null and used != null"> , </if>
+        <if test="used != null"> used = #{used} </if>
+
         WHERE BNO = #{bno}
     </update>
 

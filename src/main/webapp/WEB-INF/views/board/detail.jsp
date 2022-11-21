@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
+
 <layoutTag:layout>
 
   <div class="container">
@@ -39,6 +40,16 @@
 
           <dt>내용</dt>
           <dd>${detail.content}</dd>
+
+
+
+
+
+          <dt>고정공지사항유무</dt>
+          <dd>${detail.fixed}</dd>
+
+          <dt>게시글 사용유무</dt>
+          <dd>${detail.used}</dd>
         </dl>
       </form>
       <div class="btn-group btn-group-sm" role="group" style="float:right;">
