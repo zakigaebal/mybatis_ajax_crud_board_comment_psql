@@ -1,5 +1,4 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
   .subReply {
     padding-left: 50px;
@@ -11,8 +10,8 @@
 
 <script>
   var bno = '${detail.bno}'; //게시글 번호
-  var writer = '${ss_login_id}'; //게시글 작성자
-  var role = '${ss_role}'; //게시 역할
+  var writer = '${detail.writer}'; //게시글 번호
+
   //댓글 조회
   function commentReload(){
     $.ajax({
@@ -45,14 +44,8 @@
 
             html += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
             html += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
-
-            if(reply.writer==writer || role=="ADMIN"){
-
             html += '<button type="button" class="btn btn-outline-warning" onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');">수정</button>';
             html += '<button type="button" class="btn btn-outline-danger" onclick="commentDeleteList('+reply.cno+');">삭제</button>';
-            }
-
-
             html += '</div>';
             html += '<form class="form-inline" action="/comment/cinsert" method="post">' +
 
@@ -81,10 +74,9 @@
             console.log(reply)
             subHtml += '<div class="commentInfo'+reply.cno+'">'+'댓글번호 : '+reply.cno+' / 작성자 : '+reply.writer;
 
-            if(reply.writer==writer || role=="ADMIN"){
-              subHtml += '<button type="button" class="btn btn-outline-warning" onclick="commentUpdate(' + reply.cno + ',\'' + reply.content + '\');">수정</button>';
-              subHtml += '<button type="button" class="btn btn-outline-danger" onclick="commentDeleteList(' + reply.cno + ');">삭제</button>';
-            }
+            subHtml += '<button type="button" class="btn btn-outline-warning" onclick="commentUpdate('+reply.cno+',\''+reply.content+'\');">수정</button>';
+            subHtml += '<button type="button" class="btn btn-outline-danger" onclick="commentDeleteList('+reply.cno+');">삭제</button>';
+
 
             subHtml += '</div>';
 
@@ -103,14 +95,21 @@
     });
   }
 
+
+
+
+
   //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
   function commentUpdate(cno, content){
     var a ='';
+
     a += '<div class="input-group">';
     a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
     a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
     a += '</div>';
+
     $('.commentContent'+cno).html(a);
+
   }
 
   //댓글 수정
@@ -161,6 +160,7 @@
       }
     });
   }
+
 
   $(document).ready(function(){
     commentReload(); //페이지 로딩시 댓글 목록 출력

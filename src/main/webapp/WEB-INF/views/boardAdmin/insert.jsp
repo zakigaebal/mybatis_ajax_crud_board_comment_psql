@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="writer">작성자</label>
-                    <input type="text" class="form-control" id="writer" name="writer" placeholder="내용을 입력하세요." value="<%=strLoginId%>" readonly>
+                    <input type="text" class="form-control" id="writer" name="writer" placeholder="내용을 입력하세요." value="<%=strName%>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="content">내용</label>

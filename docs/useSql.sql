@@ -7,6 +7,18 @@ create table members(
                         role varchar(50),
                         reg_day timestamp);
 
+-- 회원가입테이블 변경
+create table members(
+                        member_id serial,
+                        login_id varchar(50) primary key,
+                        password varchar(50),
+                        name varchar(50),
+                        role varchar(50),
+                        phone varchar(50),
+                        gender varchar(50),
+                        reg_day timestamp);
+
+
 -- 회원가입 테이블 조회
 select * from members;
 

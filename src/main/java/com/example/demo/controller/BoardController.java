@@ -15,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Enumeration;
 
 @Api(tags = {"게시판정보를 제공하는 Controller"})
 @Controller
@@ -27,6 +29,12 @@ public class BoardController {
     private String boardHome(Model model){
         model.addAttribute("list", mBoardService.boardListService());
         return "board/list"; //생성할 jsp
+    }
+
+    @RequestMapping("/admin") //게시판 리스트 화면 호출
+    private String boardAdmin(Model model){
+        model.addAttribute("list", mBoardService.boardListService());
+        return "boardAdmin/adminList"; //생성할 jsp
     }
 
 
@@ -48,17 +56,16 @@ public class BoardController {
 
 
 
-@RequestMapping("/hello")
-@ResponseBody
-public String hello(){
-        return "ss2ewrf";
-}
+
 
 
 
     @RequestMapping("/insert") //게시글 작성폼 호출
-    private String boardInsertForm(){
+    private String boardInsertForm(HttpServletRequest req){
 
+
+
+        
         return "board/insert";
     }
 

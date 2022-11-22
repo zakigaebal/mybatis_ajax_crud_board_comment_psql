@@ -51,10 +51,19 @@
 <!-- 헤더 위치 -->
 <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
+<script>
+
+    var msg = "${msg}";
+if(msg!=""){
+    alert(msg)
+}
+
+</script>
+
 <main class="form-signin">
     <form action="/member/insert_exe" method="post">
         <h1 class="h3 mb-3 fw-normal">회원가입</h1>
-
+        <div><input type="hidden" name="memberId" value=0></div>
         <div><label>Login ID</label> <input type="text" name="loginId"></div>
         <div><label>Password</label> <input type="password" name="password"></div>
         <div><label>이름</label> <input type="text" name="name"></div>
@@ -62,13 +71,13 @@
 
         <div>
             <label>성별</label>
-            <input type="radio" name="gender" value="man">남성
+            <input type="radio" name="gender" value="man" checked>남성
             <input type="radio" name="gender" value="woman">여성
         </div>
 
         <div>
         <label>권한</label>
-        <input type="radio" name="role" value="MEMBER">MEMBER
+        <input type="radio" name="role" value="MEMBER" checked>MEMBER
         <input type="radio" name="role" value="ADMIN">ADMIN
         </div>
 

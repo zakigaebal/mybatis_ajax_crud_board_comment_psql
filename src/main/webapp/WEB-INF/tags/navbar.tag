@@ -53,9 +53,10 @@
 <%--                </li>--%>
     <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home(H)</a></li>
     <li class="nav-item"><a href="/list" class="nav-link">게시판</a></li>
-    <% //if("Y".equals(strAuth)){ %>
+                <% if("ADMIN".equals(strRole)){ %>
+                <li class="nav-item"><a href="/admin" class="nav-link active" aria-current="page">Home(A)</a></li>
     <li class="nav-item"><a href="/member/list" class="nav-link">회원목록</a></li>
-    <% //} %>
+    <% } %>
 
             </ul>
 

@@ -22,8 +22,8 @@ public class CommonController {
                - HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환합니다
         */
 
-        String strReturn="";
         HttpSession session = req.getSession();
+        String strReturn="";
 
         // 세션 ID 가져오기
         String strSessionId = session.getId();
@@ -38,7 +38,7 @@ public class CommonController {
         while(names.hasMoreElements()){
             strSession = names.nextElement();
             strReturn += strSession+" : "+ session.getAttribute(strSession) +"</br>";
-            //System.out.println(strSession +" : "+ session.getAttribute(strSession));
+            System.out.println(strSession +" : "+ session.getAttribute(strSession));
         }
 
         return strReturn;

@@ -37,9 +37,9 @@ public class MemberService {
     }
 
     /* 공부기록 삭제 */
-    public int doMemberDel(String strMemberId){
+    public int doMemberDel(int MemberId){
 
-        int intI  = memberDao.doMemberDel(strMemberId);
+        int intI  = memberDao.doMemberDel(MemberId);
         return  intI;
     }
 

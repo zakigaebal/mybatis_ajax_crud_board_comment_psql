@@ -27,16 +27,11 @@
     </select>
 
     <!-- 멤버 수정 -->
-    <update id="doMemberUp" parameterType="com.example.demo.domain.MemberVO">
-        Update  members
-        SET name = #{name} , role=#{role} , reg_day=now()
-        WHERE member_id = to_number(#{memberId})
-    </update>
+
 
     <!-- 멤버 삭제 -->
     <delete id="doMemberDel">
-        delete from  members
-        WHERE member_id = #{strMemberId}
+        DELETE FROM members WHERE member_id = #{memberId}
     </delete>
 
     <!-- 멤버 등록 Insert -->

@@ -47,7 +47,7 @@
             <div class="col"><%= vo_member.getName() %></div>
             <div class="col"><%= vo_member.getRole() %></div>
             <div class="col"><%= vo_member.getRegDay() %></div>
-            <div class="col"><a href="/member/delete?key_id=<%= vo_member.getMemberId() %>">삭제</a></div>
+            <div class="col"><a href="/member/delete?member_id=<%= vo_member.getMemberId() %>">삭제</a></div>
         </div>
         <% } %>
 

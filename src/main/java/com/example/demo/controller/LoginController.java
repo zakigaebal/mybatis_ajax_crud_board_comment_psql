@@ -44,7 +44,8 @@ public class LoginController {
         if(vo_member==null){
             strReturn = "/login/loginForm";
             strMessage = "ID가 존재하지 않아요.";
-        }else{
+        }
+        else{
             if(!strPassword.equals(vo_member.getPassword())) {
                 strReturn = "/login/loginForm";
                 strMessage = "패스워드가 일치하지 않아요.";

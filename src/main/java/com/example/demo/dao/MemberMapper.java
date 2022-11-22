@@ -18,7 +18,7 @@ public interface MemberMapper {
     public int doMemberUp(MemberVO vo_member);
 
     //멤버 삭제
-    public int doMemberDel(String id);
+    public int doMemberDel(int memberId);
 
     //멤버 등록
     public int doMemberIns(MemberVO vo);

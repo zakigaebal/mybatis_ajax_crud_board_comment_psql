@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-    private String memberId;
+
+    private int memberId;
     private String loginId;
     private String password;
     private String name;
@@ -18,7 +19,8 @@ public class MemberVO {
     private String regDay;
 
     @Builder
-    public MemberVO(String memberId, String loginId, String password, String name, String role, String phone, String gender, String regDay) {
+    public MemberVO(int memberId, String loginId, String password, String name, String role, String phone, String gender, String regDay) {
+        this.memberId = memberId;
         this.loginId = loginId;
         this.password = password;
         this.name = name;

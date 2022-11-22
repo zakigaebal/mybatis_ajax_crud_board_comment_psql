@@ -1,9 +1,9 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>--%>
-<%--<layoutTag:layout>--%>
+<%@ taglib prefix="layoutTag" tagdir="/WEB-INF/tags"%>
+<layoutTag:layout>
 
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,28 +14,14 @@
     </head>
     <body>
 
-    <%@ include file="/WEB-INF/views/comm/header.jsp"%>
+
 
 
     <div class="container">
         <div class="col-xs-12" style="margin:15px auto;">
 
             <label style="font-size:20px;"><span class="glyphicon glyphicon-list-alt"></span>게시글 목록</label>
-
-
-
-            <c:set var="loginID" value='<%=strLoginId%>' />
-            <c:choose>
-                <c:when test="${loginID == 'guest'}">
-                </c:when>
-                <c:otherwise>
-                        <button class="btn btn-outline-success" style="float:right;" onclick="location.href='/insert'">글쓰기</button>
-                </c:otherwise>
-            </c:choose>
-
-
-
-
+            <button class="btn btn-outline-success" style="float:right;" onclick="location.href='/insert'">글쓰기</button>
         </div>
 
 
@@ -104,4 +90,4 @@
     </body>
     </html>
 
-<%--</layoutTag:layout>--%>
+</layoutTag:layout>
