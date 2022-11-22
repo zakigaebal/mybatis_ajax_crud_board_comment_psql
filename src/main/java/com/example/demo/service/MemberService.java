@@ -1,63 +1,26 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.MemberMapper;
 import com.example.demo.domain.MemberVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class MemberService {
+public interface MemberService {
 
-    @Autowired
-    MemberMapper memberDao;
-
-    /* 멤버 리스트 */
-    public List<MemberVO> doMemberList(){
-
-        List<MemberVO> list = new ArrayList<>();
-        list = memberDao.doMemberList();
-        return  list;
-    }
+    public List<MemberVO> doMemberList();
 
     /* One Row Select */
-    public MemberVO doMemberListOne(String strMemberId){
-        MemberVO vo_member = memberDao.doMemberListOne(strMemberId);
-        return  vo_member;
-    }
+    public MemberVO doMemberListOne(String strMemberId);
 
     /* 멤버 수정 */
-    public int doMemberUp(MemberVO vo_member){
+    public int doMemberUp(MemberVO vo_member);
 
-        int intI = memberDao.doMemberUp(vo_member);
+    /* 멤버 삭제 */
+    public int doMemberDel(int MemberId);
 
-        return  intI;
-    }
+    /* 멤버 등록 */
+    public int doMemberIns(MemberVO vo_member);
 
-    /* 공부기록 삭제 */
-    public int doMemberDel(int MemberId){
-
-        int intI  = memberDao.doMemberDel(MemberId);
-        return  intI;
-    }
-
-    /* 공부하기 등록 */
-    public int doMemberIns(MemberVO vo_member){
-
-        int intI = memberDao.doMemberIns(vo_member);
-
-        return  intI;
-    };
-
-    public MemberVO doMemberLogin(String strLoginId) {
-
-        MemberVO vo_member = memberDao.doMemberLogin(strLoginId);
-
-        return vo_member;
-
-    }
-
+    public MemberVO doMemberLogin(String strLoginId);
 
 }

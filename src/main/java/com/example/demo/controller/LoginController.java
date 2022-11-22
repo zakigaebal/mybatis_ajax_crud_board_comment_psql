@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.MemberVO;
-import com.example.demo.service.MemberService;
+import com.example.demo.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("login")
 public class LoginController {
     @Autowired
-    MemberService memberService;
+    MemberServiceImpl memberService;
 
     //로그인페이지이동
     @GetMapping("/login")
