@@ -4,6 +4,12 @@
 | col 2 is |    centered   |   $12 |
 | col 3 is | right-aligned |    $1 |
 
+| 속성명      |      설명       |  Cool |
+|----------|:-------------:|------:|
+| id       |    질문의고유번호    | $1600 |
+| col 2 is |   centered    |   $12 |
+| col 3 is | right-aligned |    $1 |
+
 | MathBean                 |
 |--------------------------|
 | + getOne() :int          |

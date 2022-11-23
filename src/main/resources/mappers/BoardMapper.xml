@@ -25,7 +25,7 @@ CREATE TABLE `tb_board` (
     </select>
 
     <select id="boardList" resultType="com.example.demo.domain.BoardVO">
-        SELECT bno, subject, content, writer, fixed, used, reg_date as regDate FROM BOARD
+        SELECT bno, subject, content, writer, fixed, used, hit, reg_date as regDate FROM BOARD
     </select>
 
     <select id="boardDetail" parameterType="int" resultType="com.example.demo.domain.BoardVO">
@@ -69,6 +69,10 @@ CREATE TABLE `tb_board` (
         <if test="used != null"> used = #{used} </if>
 
         WHERE BNO = #{bno}
+    </update>
+
+    <update id="boardHit" parameterType="com.example.demo.domain.BoardVO">
+        update board set hit = hit+1 where bno=#{bno}
     </update>
 
     <delete id="boardDelete" parameterType="int">

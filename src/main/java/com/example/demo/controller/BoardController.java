@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.BoardMapper;
 import com.example.demo.domain.BoardVO;
 import com.example.demo.domain.FileVO;
 import com.example.demo.service.BoardServiceImpl;
@@ -24,6 +25,8 @@ import java.util.Enumeration;
 public class BoardController {
     @Autowired
     BoardServiceImpl mBoardService;
+    @Autowired
+    BoardMapper boardDao;
 
     @RequestMapping("/") //게시판 리스트 화면 호출
     private String boardHome(Model model){
@@ -40,7 +43,10 @@ public class BoardController {
 
     @RequestMapping("/list") //게시판 리스트 화면 호출
     private String boardList(Model model){
+
         model.addAttribute("list", mBoardService.boardListService());
+
+
         return "board/list"; //생성할 jsp
     }
 
@@ -49,12 +55,9 @@ public class BoardController {
 
         model.addAttribute("detail", mBoardService.boardDetailService(bno));
         model.addAttribute("files", mBoardService.fileDetailService(bno)); //추가
-
+        boardDao.boardHit(bno);
         return "board/detail";
     }
-
-
-
 
 
 
@@ -63,9 +66,6 @@ public class BoardController {
     @RequestMapping("/insert") //게시글 작성폼 호출
     private String boardInsertForm(HttpServletRequest req){
 
-
-
-        
         return "board/insert";
     }
 

@@ -33,7 +33,7 @@ public interface BoardMapper {
     //파일 상세
     public FileVO fileDetail(int bno);
 
-
+    public int boardHit(int bno);
 
 
 }

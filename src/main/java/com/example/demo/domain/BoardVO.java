@@ -10,10 +10,20 @@ public class BoardVO {
     private String content;
     private String writer;
 
+    private int hit;
+
     private String fixed;
 
     private String used;
     private Date regDate;
+
+    public int getHit() {
+        return hit;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
+    }
 
     public String getFixed() {
         return fixed;

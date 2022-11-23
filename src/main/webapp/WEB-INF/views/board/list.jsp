@@ -14,10 +14,12 @@
     </head>
     <body>
 
+
     <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
 
     <div class="container">
+
         <div class="col-xs-12" style="margin:15px auto;">
 
             <label style="font-size:20px;"><span class="glyphicon glyphicon-list-alt"></span>게시글 목록</label>
@@ -43,15 +45,16 @@
         <div class="col-xs-12">
             <table class="table table-hover">
                 <tr class="table-dark">
-                    <th>No</th>
-                    <th>Subject</th>
-                    <th>Writer</th>
+                    <th>순번</th>
+                    <th>제목</th>
+                    <th>작성아이디</th>
+                    <th>조회수</th>
 <%--                    <th>고정</th>--%>
 <%--                    <th>사용</th>--%>
-                    <th>Date</th>
+                    <th>작성날짜</th>
                 </tr>
 
-
+<%--고정글 먼저 보이게 하기--%>
                 <c:forEach var="l" items="${list}">
                     <c:choose>
                         <c:when test="${l.fixed == 'y' && l.used == 'y'}">
@@ -59,6 +62,7 @@
                                 <td>공지 ${l.bno}</td>
                                 <td>${l.subject}</td>
                                 <td>${l.writer}</td>
+                                <td>${l.hit}</td>
 <%--                                <td>${l.fixed}</td>--%>
 <%--                                <td>${l.used}</td>--%>
                                 <td>
@@ -74,7 +78,7 @@
                     </c:choose>
                 </c:forEach>
 
-
+<%--고정글 제외하고 보이게 하기--%>
                 <c:forEach var="l" items="${list}">
                     <c:choose>
                         <c:when test="${l.used == 'y' && l.fixed == 'n'}">
@@ -82,6 +86,7 @@
                                 <td>${l.bno}</td>
                                 <td>${l.subject}</td>
                                 <td>${l.writer}</td>
+                                <td>${l.hit}</td>
 <%--                                <td>${l.fixed}</td>--%>
 <%--                                <td>${l.used}</td>--%>
                                 <td>
@@ -99,8 +104,26 @@
             </table>
         </div>
     </div>
+    <script>
+        $(window).bind("pageshow", function (event){
+            if(event.originalEvent.persisted){
+                console.log('asd')
+            }
+            else{
+                console.log('ffasasdd')
+            }
+        })
 
 
+
+        window.onpageshow = function(event){
+            if(event.persisted){
+                console.log('ffa')
+                document.location.reload();
+                console.log('asdfd')
+            }
+        }
+    </script>
     </body>
     </html>
 

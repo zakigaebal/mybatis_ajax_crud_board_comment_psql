@@ -29,6 +29,7 @@
           <th>Writer</th>
           <th>고정</th>
           <th>사용</th>
+          <th>조회수</th>
           <th>Date</th>
         </tr>
         <c:forEach var="l" items="${list}">
@@ -38,6 +39,7 @@
             <td>${l.writer}</td>
             <td>${l.fixed}</td>
             <td>${l.used}</td>
+            <td>${l.hit}</td>
             <td>
               <fmt:formatDate value="${l.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/>
             </td>
@@ -48,7 +50,13 @@
     </div>
   </div>
 
-
+  <script>
+    window.onpageshow = function (event){
+      if(event.persisted){
+        document.location.reload();
+      }
+    }
+  </script>
   </body>
   </html>
 

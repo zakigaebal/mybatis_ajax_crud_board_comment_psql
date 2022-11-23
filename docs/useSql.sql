@@ -31,6 +31,17 @@ CREATE TABLE BOARD (
                        writer VARCHAR(100) ,
                        reg_date timestamp);
 
+-- 게시판 테이블 변경 - 조회수 칼럼 추가
+CREATE TABLE BOARD (
+                       bno serial primary key,
+                       subject VARCHAR(100) ,
+                       content VARCHAR(100),
+                       writer VARCHAR(100) ,
+                       fixed varchar(20),
+                       used varchar(20),
+                       hit int default 0,
+                       reg_date timestamp);
+
 -- 게시판 조회
 select * from board;
 
