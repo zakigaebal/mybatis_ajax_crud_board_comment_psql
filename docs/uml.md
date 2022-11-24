@@ -6,3 +6,5 @@ uml 그리기
 | + getOne() :int          |
 | + printClassName() :void |
 | + printNumber(int) :void |
+
+

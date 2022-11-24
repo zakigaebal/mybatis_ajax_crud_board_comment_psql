@@ -44,9 +44,7 @@ public class MemberController {
     @PostMapping("/insert_exe")
     public String doInsExe(@ModelAttribute MemberVO vo_member,  RedirectAttributes ra){
 try{
-    System.out.println("asds");
     int intI = memberService.doMemberIns(vo_member);
-
     System.out.println(intI);
     System.out.println("회원가입을 진행합니다.");
     return "redirect:/member/list";
